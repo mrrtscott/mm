@@ -1,5 +1,7 @@
 package com.quizleafgroup.quizleaf.controller
 
+import com.quizleafgroup.quizleaf.model.Results
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -12,13 +14,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes
 @Controller
 class MainController {
 
-    var result: Result
+    @Autowired
+    lateinit var results: Results
+
     var qService: QuizService
-    var submitted: Boolean
+
+    var submitted: Boolean = false
 
     @ModelAttribute("result")
-    fun getResult(){
-        return result
+    fun getResult() :Results{
+        return results
 
     }
 
@@ -34,7 +39,7 @@ class MainController {
             return "redirect:/"
         }
         submitted = false
-        result.setUsername(username)
+        results.setUsername(username)
         val qForm: QuestionForm = qService.getQuestions()
         m.addAttribute("qForm", qForm)
         return "quiz.html"
@@ -43,8 +48,8 @@ class MainController {
     @PostMapping("/submit")
     fun submit(@ModelAttribute qForm: QuestionForm?, m: Model?): String? {
         if (!submitted) {
-            result.setTotalCorrect(qService.getResult(qForm))
-            qService.saveScore(result)
+            results.setTotalCorrect(qService.getResult(qForm))
+            qService.saveScore(results)
             submitted = true
         }
         return "result.html"
@@ -52,7 +57,7 @@ class MainController {
 
     @GetMapping("/score")
     fun score(m: Model): String? {
-        val sList: List<Result> = qService.getTopScore()
+        val sList: List<Results> = qService.getTopScore()
         m.addAttribute("sList", sList)
         return "scoreboard.html"
     }
