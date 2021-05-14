@@ -45,11 +45,11 @@ class Question {
     }
 
     fun getGroup(): Int{
-        return group
+        return groupSet
     }
 
-    fun setGroup(group: Int){
-        this.group = group
+    fun setGroup(groupSet: Int){
+        this.groupSet = groupSet
     }
 
     fun getTitle(): String? {
