@@ -16,13 +16,14 @@ class Results {
     private var totalCorrect = 0
 
 
-
     constructor(id: Int, username: String, totalCorrect: Int){
         this.id = id
         this.username = username
         this.totalCorrect = totalCorrect
 
     }
+
+    constructor()
 
     fun getId(): Int {
         return id

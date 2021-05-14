@@ -1,16 +1,18 @@
 package com.quizleafgroup.quizleaf.model
 
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import org.springframework.stereotype.Component
+import javax.persistence.*
 
-
+@Component
+@Entity
+@Table(name = "questions")
 class Question {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private var quesId = 0
+    private var group:Int = 0
     private var title: String? = null
     private var optionA: String? = null
     private var optionB: String? = null
@@ -19,8 +21,9 @@ class Question {
     private var chose = 0
 
 
-    constructor(quesId: Int, title: String, optionA: String, optionB: String, optionC: String, ans: Int, chose:Int){
+    constructor(quesId: Int, group:Int ,title: String, optionA: String, optionB: String, optionC: String, ans: Int, chose:Int){
         this.quesId = quesId
+        this.group = group
         this.title = title
         this.optionA = optionA
         this.optionB = optionB
@@ -37,6 +40,14 @@ class Question {
 
     fun setQuesId(quesId: Int) {
         this.quesId = quesId
+    }
+
+    fun getGroup(): Int{
+        return group
+    }
+
+    fun setGroup(group: Int){
+        this.group = group
     }
 
     fun getTitle(): String? {

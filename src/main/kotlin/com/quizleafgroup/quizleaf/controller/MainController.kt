@@ -1,6 +1,8 @@
 package com.quizleafgroup.quizleaf.controller
 
+import com.quizleafgroup.quizleaf.model.QuestionForm
 import com.quizleafgroup.quizleaf.model.Results
+import com.quizleafgroup.quizleaf.service.QuizService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -17,7 +19,7 @@ class MainController {
     @Autowired
     lateinit var results: Results
 
-    var qService: QuizService
+    lateinit var qService: QuizService
 
     var submitted: Boolean = false
 
@@ -40,7 +42,7 @@ class MainController {
         }
         submitted = false
         results.setUsername(username)
-        val qForm: QuestionForm = qService.getQuestions()
+        val qForm: QuestionForm? = qService.getQuestions()
         m.addAttribute("qForm", qForm)
         return "quiz.html"
     }
@@ -48,7 +50,7 @@ class MainController {
     @PostMapping("/submit")
     fun submit(@ModelAttribute qForm: QuestionForm?, m: Model?): String? {
         if (!submitted) {
-            results.setTotalCorrect(qService.getResult(qForm))
+            results.setTotalCorrect(qService.getResult(qForm!!))
             qService.saveScore(results)
             submitted = true
         }
@@ -57,7 +59,7 @@ class MainController {
 
     @GetMapping("/score")
     fun score(m: Model): String? {
-        val sList: List<Results> = qService.getTopScore()
+        val sList: List<Results?>? = qService.getTopScore()
         m.addAttribute("sList", sList)
         return "scoreboard.html"
     }
