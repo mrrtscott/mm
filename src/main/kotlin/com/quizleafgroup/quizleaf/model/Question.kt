@@ -11,7 +11,7 @@ class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var quesId = 0
+    private var quesId: Int = 0
     private var group:Int = 0
     private var title: String? = null
     private var optionA: String? = null
