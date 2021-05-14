@@ -12,7 +12,7 @@ class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private var quesId: Int = 0
-    private var group:Int = 0
+    private var groupSet:Int = 0
     private var title: String? = null
     private var optionA: String? = null
     private var optionB: String? = null
@@ -21,9 +21,9 @@ class Question {
     private var chose = 0
 
 
-    constructor(quesId: Int, group:Int ,title: String, optionA: String, optionB: String, optionC: String, ans: Int, chose:Int){
+    constructor(quesId: Int, groupSet:Int ,title: String, optionA: String, optionB: String, optionC: String, ans: Int, chose:Int){
         this.quesId = quesId
-        this.group = group
+        this.groupSet = groupSet
         this.title = title
         this.optionA = optionA
         this.optionB = optionB
