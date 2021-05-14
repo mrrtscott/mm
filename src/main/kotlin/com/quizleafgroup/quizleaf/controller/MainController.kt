@@ -36,10 +36,10 @@ class MainController {
 
     @PostMapping("/quiz")
     fun quiz(@RequestParam username: String, m: Model, ra: RedirectAttributes): String? {
-        if (username == "") {
-            ra.addFlashAttribute("warning", "You must enter your name")
-            return "redirect:/"
-        }
+//        if (username == "") {
+//            ra.addFlashAttribute("warning", "You must enter your name")
+//            return "redirect:/"
+//        }
         submitted = false
         results.setUsername(username)
         val qForm: QuestionForm? = qService.getQuestions()
