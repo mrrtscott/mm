@@ -13,10 +13,10 @@ class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private var quesId: Int = 0
     private var group:Int = 0
-    private var title: String? = null
-    private var optionA: String? = null
-    private var optionB: String? = null
-    private var optionC: String? = null
+    private var title: String
+    private var optionA: String
+    private var optionB: String
+    private var optionC: String
     private var ans = 0
     private var chose = 0
 
