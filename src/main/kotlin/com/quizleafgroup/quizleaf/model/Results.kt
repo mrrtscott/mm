@@ -12,7 +12,7 @@ class Results {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private var id = 0
-    private var username: String
+    private var username: String? = null
     private var totalCorrect = 0
 
 
