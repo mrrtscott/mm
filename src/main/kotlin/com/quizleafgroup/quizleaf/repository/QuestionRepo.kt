@@ -9,7 +9,7 @@ interface QuestionRepo :JpaRepository<Question, Int> {
 
 
 
-    @Query("SELECT p FROM Question p WHERE LOWER(p.group) = (:group)")
-    fun findByGroup(@Param("group") group: Int): List<Question?>?
+    @Query("SELECT p FROM Question p WHERE LOWER(p.groupSet) = (:groupSet)")
+    fun findByGroup(@Param("groupSet") groupSet: Int): List<Question?>?
 
 }
